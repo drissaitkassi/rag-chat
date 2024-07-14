@@ -33,7 +33,7 @@ public class ragChatController {
         List<Document> documents = vectorStore.similaritySearch(SearchRequest.query(question).withTopK(4));
         //context
         List<String> context = documents.stream().map(Document::getContent).toList();
-        //prompt template
+        //prompt template you can use default values on the constuctor
         Prompt prompt = pt.create(Map.of("context", context, "question", question));
         return chatAiService.ragChat(prompt);
     }
